@@ -3,7 +3,16 @@
 // Якщо це так, то фільтруємо машини по бренду і повертаємо ті, що найбільш економні.
 
 function getMostFuelEfficientCars(cars, brand) {
-  // Ваш код
+    const allEfficient = cars.every(car => car.fuelConsumption < 6);
+    if (!allEfficient) {
+        return [];
+    }
+
+    const leastConsumption = cars.filter(car => car.fuelConsumption < 6);
+    const branded = leastConsumption.filter(car => car.brand === brand);
+
+    const carsDescOrder = branded.sort((a, b) => a.fuelConsumption - b.fuelConsumption);
+    return carsDescOrder;
 }
 
 // Приклад використання:
